@@ -1,0 +1,71 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/top_action_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ump_header_bg"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp" >
+
+        <CheckBox
+            android:id="@+id/current_city"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_weight="0"
+            android:button="@null"
+            android:drawableEnd="@drawable/action_current_city_selector"
+            android:drawablePadding="5dp"
+            android:drawableRight="@drawable/action_current_city_selector"
+            android:gravity="center_vertical"
+            android:paddingEnd="5dp"
+            android:paddingLeft="0dp"
+            android:paddingRight="5dp"
+            android:paddingStart="0dp"
+            android:text="@string/beijing"
+            android:textColor="#ffffff" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/bg_green_camera"
+            android:drawableLeft="@drawable/ic_global_search_textbox_white_normal"
+            android:drawablePadding="5dp"
+            android:drawableStart="@drawable/ic_global_search_textbox_white_normal"
+            android:gravity="center_vertical"
+            android:paddingBottom="0dp"
+            android:paddingEnd="0dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="0dp"
+            android:paddingStart="5dp"
+            android:paddingTop="0dp"
+            android:text="@string/search_hint"
+            android:textColor="#99ffffff" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_weight="0"
+            android:src="@drawable/ic_action_map" />
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#eeeeee" >
+    </ListView>
+
+</LinearLayout>

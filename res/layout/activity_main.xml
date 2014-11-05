@@ -1,0 +1,48 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/main_layout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical" >
+    </LinearLayout>
+
+    <RadioGroup
+        android:id="@+id/bottom_tab"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:background="@drawable/abc_ab_bottom_transparent_light_holo"
+        android:orientation="horizontal" >
+
+        <RadioButton
+            android:id="@+id/group_purcashe"
+            style="@style/BottomMenuItemTheme"
+            android:drawableTop="@drawable/bottom_tab_group_purchase_selector"
+            android:text="@string/group_purcashe" />
+
+        <RadioButton
+            android:id="@+id/shops"
+            style="@style/BottomMenuItemTheme"
+            android:drawableTop="@drawable/bottom_tab_shops_selector"
+            android:text="@string/shops" />
+
+        <RadioButton
+            android:id="@+id/me"
+            style="@style/BottomMenuItemTheme"
+            android:drawableTop="@drawable/bottom_tab_me_selector"
+            android:text="@string/me" />
+
+        <RadioButton
+            android:id="@+id/more"
+            style="@style/BottomMenuItemTheme"
+            android:drawableTop="@drawable/bottom_tab_more_selector"
+            android:text="@string/more" />
+    </RadioGroup>
+
+</LinearLayout>

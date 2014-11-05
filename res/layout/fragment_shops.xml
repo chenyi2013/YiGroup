@@ -1,0 +1,168 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ump_header_bg"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="0"
+            android:src="@drawable/ic_action_home" />
+
+        <RadioGroup
+            android:id="@+id/top_tab"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:checkedButton="@+id/all_shops"
+            android:orientation="horizontal" >
+
+            <RadioButton
+                android:id="@+id/all_shops"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:button="@null"
+                android:text="全部商家"
+                android:textColor="@color/shops_tab_item_color_list" />
+
+            <View
+                android:layout_width="1px"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:background="#99ffffff" />
+
+            <RadioButton
+                android:id="@+id/vip_shops"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:button="@null"
+                android:text="优惠商家"
+                android:textColor="@color/shops_tab_item_color_list" />
+        </RadioGroup>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_weight="0"
+            android:src="@drawable/ic_action_search" />
+    </LinearLayout>
+
+    <RadioGroup
+        android:id="@+id/shops_menu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/abc_ab_solid_light_holo"
+        android:orientation="horizontal" >
+
+        <RadioButton
+            android:id="@+id/all_catalogue"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableLeft="@drawable/ic_category_all"
+            android:drawableRight="@drawable/abc_spinner_ab_default_holo_dark"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="全部分类" />
+
+        <View
+            android:layout_width="1px"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_weight="0"
+            android:background="#bbbbbb" />
+
+        <RadioButton
+            android:id="@+id/choice_zone"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableLeft="@drawable/ic_location"
+            android:drawableRight="@drawable/abc_spinner_ab_default_holo_dark"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="全城" />
+
+        <View
+            android:layout_width="1px"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_weight="0"
+            android:background="#bbbbbb" />
+
+        <RadioButton
+            android:id="@+id/order_type"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableLeft="@drawable/ic_order"
+            android:drawableRight="@drawable/abc_spinner_ab_default_holo_dark"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="智能排序" />
+    </RadioGroup>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/framgent_shops_view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <View
+            android:id="@+id/menu_bg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#77000000"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:id="@+id/list_menu"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:paddingBottom="60dp"
+            android:visibility="gone" >
+
+            <ListView
+                android:id="@+id/left_choice_zone"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#ffffff"
+                android:choiceMode="singleChoice"
+                android:listSelector="#eeeeee" >
+            </ListView>
+
+            <ListView
+                android:id="@+id/right_choice_zone"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#eeeeee" >
+            </ListView>
+        </LinearLayout>
+    </FrameLayout>
+
+</LinearLayout>

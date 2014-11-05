@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">YiGroup</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="beijing">北京</string>
+    <string name="search_hint">输入商家、分类或商圈</string>
+    <string name="group_purcashe">团购</string>
+    <string name="shops">商家</string>
+    <string name="me">我的</string>
+    <string name="more">更多</string>
+    <string name="disance">%1$dm</string>
+    <string name="price">"&lt;font color='#37bbb1'>&lt;b>%1$s&lt;/b>&lt;/font>元"</string>
+    <string name="selled">已售%1$d</string>
+    <string name="famous_for">名店抢购</string>
+    <string name="guess_you_like">猜你喜欢</string>
+    <string name="see_all_goroup_purchase">查看全部团购</string>
+    <string name="are_you_willing_to_let_us_know_about_you">"愿意让我们更了解你吗\n让美团的推荐更符合你的胃口"</string>
+    <string name="my_dna_about_meituan">我的美团DNA</string>
+
+</resources>
