@@ -52,6 +52,7 @@
             android:textColor="#99ffffff" />
 
         <ImageView
+            android:id="@+id/open_map"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"

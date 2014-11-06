@@ -21,5 +21,6 @@
     <string name="mark_num">%1$d评价</string>
     <string name="address_area">"%1$s %2$s"</string>
     <string name="avg_price">人均%1$s元</string>
+    <string name="title_activity_basic_map">BasicMapActivity</string>
 
 </resources>

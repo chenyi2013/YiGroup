@@ -3,6 +3,7 @@ package com.kevin.yigroup.fragment;
 import java.util.ArrayList;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -11,6 +12,7 @@ import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
@@ -32,6 +34,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.ImageLoader.ImageListener;
 import com.android.volley.toolbox.StringRequest;
+import com.kevin.yigroup.BasicMapActivity;
 import com.kevin.yigroup.R;
 import com.kevin.yigroup.YiGroupApplication;
 import com.kevin.yigroup.config.URLS;
@@ -51,7 +54,7 @@ import com.kevin.yigroup.utils.UrlFormat;
 import com.kevin.yigroup.view.MyGridView;
 
 public class GroupPurchaseFragment extends Fragment implements
-		OnCheckedChangeListener, OnDismissListener {
+		OnCheckedChangeListener, OnDismissListener, OnClickListener {
 
 	private static final String TAG = "GroupPurchaseFragment";
 
@@ -67,6 +70,7 @@ public class GroupPurchaseFragment extends Fragment implements
 	private ImageView mMeiTuanFoodImg;
 	private TextView mMeiTuanFoodTitle;
 	private TextView mMeiTuanFoodDesc;
+	private ImageView mOpenMap;
 
 	private GoodsTypeAdapter mGoodsAdapter;
 	private GuessYouLikeAdapter mGuessYouLikeAdapter;
@@ -104,6 +108,9 @@ public class GroupPurchaseFragment extends Fragment implements
 
 		mCurrentCity = (CheckBox) getView().findViewById(R.id.current_city);
 		mCurrentCity.setOnCheckedChangeListener(this);
+
+		mOpenMap = (ImageView) getView().findViewById(R.id.open_map);
+		mOpenMap.setOnClickListener(this);
 		mListView = (ListView) getView().findViewById(R.id.list);
 		mListView.setDivider(null);
 		View header = LayoutInflater.from(getActivity()).inflate(
@@ -536,6 +543,21 @@ public class GroupPurchaseFragment extends Fragment implements
 
 			return convertView;
 		}
+	}
+
+	@Override
+	public void onClick(View v) {
+		switch (v.getId()) {
+		case R.id.open_map:
+
+			Intent intent = new Intent(getActivity(), BasicMapActivity.class);
+			startActivity(intent);
+			break;
+
+		default:
+			break;
+		}
+
 	}
 
 }
