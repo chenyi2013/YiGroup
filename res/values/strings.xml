@@ -18,5 +18,8 @@
     <string name="see_all_goroup_purchase">查看全部团购</string>
     <string name="are_you_willing_to_let_us_know_about_you">"愿意让我们更了解你吗\n让美团的推荐更符合你的胃口"</string>
     <string name="my_dna_about_meituan">我的美团DNA</string>
+    <string name="mark_num">%1$d评价</string>
+    <string name="address_area">"%1$s %2$s"</string>
+    <string name="avg_price">人均%1$s元</string>
 
 </resources>

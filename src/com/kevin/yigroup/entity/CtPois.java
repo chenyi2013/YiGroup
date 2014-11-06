@@ -21,11 +21,7 @@ public class CtPois {
 		this.ct_poi = ct_poi;
 	}
 
-	public CtPois(long poiid, String ct_poi) {
-		super();
-		this.poiid = poiid;
-		this.ct_poi = ct_poi;
-	}
+	
 
 	@Override
 	public String toString() {
