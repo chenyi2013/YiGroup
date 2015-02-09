@@ -13,7 +13,7 @@ public class MeFragment extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater,
 			@Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-		return inflater.inflate(R.layout.fragment_all_shops, container,
+		return inflater.inflate(R.layout.fragment_me_layout, container,
 				false);
 	}
 

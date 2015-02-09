@@ -1,0 +1,137 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="${relativePackage}.${activityClass}" >
+
+    <RadioGroup
+        android:id="@+id/shops_menu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/abc_ab_solid_light_holo"
+        android:orientation="horizontal" >
+
+        <RadioButton
+            android:id="@+id/all_catalogue"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableLeft="@drawable/ic_category_all"
+            android:drawableRight="@drawable/abc_spinner_ab_default_holo_dark"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="全部分类"
+            android:textSize="12sp" />
+
+        <View
+            android:layout_width="1px"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_weight="0"
+            android:background="#bbbbbb" />
+
+        <RadioButton
+            android:id="@+id/choice_zone"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableLeft="@drawable/ic_location"
+            android:drawableRight="@drawable/abc_spinner_ab_default_holo_dark"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="全城"
+            android:textSize="12sp" />
+
+        <View
+            android:layout_width="1px"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_weight="0"
+            android:background="#bbbbbb" />
+
+        <RadioButton
+            android:id="@+id/order_type"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableLeft="@drawable/ic_order"
+            android:drawableRight="@drawable/abc_spinner_ab_default_holo_dark"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="离我最近"
+            android:textSize="12sp" />
+
+        <View
+            android:layout_width="1px"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_weight="0"
+            android:background="#bbbbbb" />
+
+        <RadioButton
+            android:id="@+id/choice"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableLeft="@drawable/ic_order"
+            android:drawableRight="@drawable/abc_spinner_ab_default_holo_dark"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="筛选"
+            android:textSize="12sp" />
+    </RadioGroup>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <ListView
+            android:id="@+id/movie_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+        </ListView>
+
+        <View
+            android:id="@+id/menu_bg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#77000000"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:id="@+id/list_menu"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:paddingBottom="60dp"
+            android:visibility="gone" >
+
+            <ListView
+                android:id="@+id/left_choice_zone"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#ffffff"
+                android:choiceMode="singleChoice"
+                android:listSelector="#eeeeee" >
+            </ListView>
+
+            <ListView
+                android:id="@+id/right_choice_zone"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#eeeeee" >
+            </ListView>
+        </LinearLayout>
+    </FrameLayout>
+
+</LinearLayout>

@@ -3,15 +3,21 @@ package com.kevin.yigroup.fragment;
 import java.util.ArrayList;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -32,6 +38,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.ImageLoader.ImageListener;
 import com.android.volley.toolbox.StringRequest;
+import com.kevin.yigroup.MovieDetailsListActivity;
 import com.kevin.yigroup.R;
 import com.kevin.yigroup.YiGroupApplication;
 import com.kevin.yigroup.config.URLS;
@@ -60,13 +67,15 @@ public class GroupPurchaseFragment extends Fragment implements
 	private PopupWindow mPopupWindow;
 
 	private GridView mSubCityGridView;
-	private MyGridView mGoodsType;
+
 	private MyGridView mSnapUpGridView;
 	private MyGridView mFavorableGridView;
+	private ViewPager mGoodsTypeViewPager;
 	private ListView mListView;
 	private ImageView mMeiTuanFoodImg;
 	private TextView mMeiTuanFoodTitle;
 	private TextView mMeiTuanFoodDesc;
+	private LinearLayout mMeiTuanFoodLayout;
 
 	private GoodsTypeAdapter mGoodsAdapter;
 	private GuessYouLikeAdapter mGuessYouLikeAdapter;
@@ -111,19 +120,21 @@ public class GroupPurchaseFragment extends Fragment implements
 		View footer = LayoutInflater.from(getActivity()).inflate(
 				R.layout.group_purchase_list_footer, mListView, false);
 
-		LinearLayout meiTuanFoodLayout = (LinearLayout) header
+		mMeiTuanFoodLayout = (LinearLayout) header
 				.findViewById(R.id.mei_tuan_foot_layout);
-		mMeiTuanFoodTitle = (TextView) meiTuanFoodLayout
+		mMeiTuanFoodTitle = (TextView) mMeiTuanFoodLayout
 				.findViewById(R.id.title);
-		mMeiTuanFoodDesc = (TextView) meiTuanFoodLayout.findViewById(R.id.dec);
-		mMeiTuanFoodImg = (ImageView) meiTuanFoodLayout
+		mMeiTuanFoodDesc = (TextView) mMeiTuanFoodLayout.findViewById(R.id.dec);
+		mMeiTuanFoodImg = (ImageView) mMeiTuanFoodLayout
 				.findViewById(R.id.meituan_bood_img);
 
-		mGoodsType = (MyGridView) header.findViewById(R.id.goods_type_grid);
 		mSnapUpGridView = (MyGridView) header
 				.findViewById(R.id.snap_up_grid_view);
 		mFavorableGridView = (MyGridView) header
 				.findViewById(R.id.favorable_grid_view);
+		mGoodsTypeViewPager = (ViewPager) header.findViewById(R.id.view_pager);
+		mGoodsTypeViewPager.setAdapter(new GoodsTypePagerAdapter(
+				getChildFragmentManager()));
 		mListView.addHeaderView(header);
 		mListView.addFooterView(footer);
 
@@ -151,28 +162,6 @@ public class GroupPurchaseFragment extends Fragment implements
 	}
 
 	public void loadData() {
-
-		mQueue.add(new StringRequest(URLS.GOOD_TYPE_URL,
-				new Listener<String>() {
-
-					@Override
-					public void onResponse(String json) {
-
-						mGoodsAdapter = new GoodsTypeAdapter();
-						mGoodsAdapter.bindData(JsonParser
-								.getParsedData(json, Info.class).getData()
-								.getHomepage());
-						mGoodsType.setAdapter(mGoodsAdapter);
-						mGoodsAdapter.notifyDataSetChanged();
-
-					}
-				}, new ErrorListener() {
-
-					@Override
-					public void onErrorResponse(VolleyError error) {
-						Log.e(TAG, "request network error", error);
-					}
-				}));
 
 		mQueue.add(new StringRequest(URLS.SNAP_UP_URL, new Listener<String>() {
 
@@ -220,12 +209,21 @@ public class GroupPurchaseFragment extends Fragment implements
 					public void onResponse(String json) {
 
 						MeiTuanFood food = JsonParser.getMeiTuanFood(json);
+
+						if (food == null) {
+							mMeiTuanFoodLayout.setVisibility(View.GONE);
+							return;
+						}
+
+						mMeiTuanFoodLayout.setVisibility(View.VISIBLE);
 						mMeiTuanFoodTitle.setText(food.getTitle());
 						mMeiTuanFoodDesc.setText(food.getComment());
 						ImageListener listener = ImageLoader.getImageListener(
 								mMeiTuanFoodImg, R.drawable.ic_launcher,
 								R.drawable.ic_launcher);
-						mImageLoader.get(food.getImageUrl(), listener);
+						if (food.getImageUrl() != null) {
+							mImageLoader.get(food.getImageUrl(), listener);
+						}
 
 					}
 				}, new ErrorListener() {
@@ -242,11 +240,17 @@ public class GroupPurchaseFragment extends Fragment implements
 
 					@Override
 					public void onResponse(String json) {
-						mGuessYouLikeAdapter = new GuessYouLikeAdapter();
-						StidInfo info = (StidInfo) JsonParser.getGuessYouLike(
-								json).get(JsonParser.STID_INFO);
-						mGuessYouLikeAdapter.bataData(info.getData());
-						mListView.setAdapter(mGuessYouLikeAdapter);
+						if (json != null && !json.isEmpty()) {
+							StidInfo info = (StidInfo) JsonParser
+									.getGuessYouLike(json).get(
+											JsonParser.STID_INFO);
+							if (info != null && info.getData() != null) {
+								mGuessYouLikeAdapter = new GuessYouLikeAdapter();
+								mGuessYouLikeAdapter.bataData(info.getData());
+								mListView.setAdapter(mGuessYouLikeAdapter);
+							}
+						}
+
 					}
 				}, new ErrorListener() {
 
@@ -257,6 +261,84 @@ public class GroupPurchaseFragment extends Fragment implements
 				});
 		request.setShouldCache(false);
 		mQueue.add(request);
+
+	}
+
+	class GoodsTypeFragment extends Fragment implements OnItemClickListener {
+
+		private MyGridView mGridView;
+
+		@Override
+		public View onCreateView(LayoutInflater inflater,
+				@Nullable ViewGroup container,
+				@Nullable Bundle savedInstanceState) {
+			return inflater.inflate(R.layout.fragment_goods_type, container,
+					false);
+		}
+
+		@Override
+		public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+			super.onActivityCreated(savedInstanceState);
+			mGridView = (MyGridView) getView().findViewById(
+					R.id.goods_type_grid);
+			mGridView.setOnItemClickListener(this);
+
+			mQueue.add(new StringRequest(URLS.GOOD_TYPE_URL,
+					new Listener<String>() {
+
+						@Override
+						public void onResponse(String json) {
+
+							mGoodsAdapter = new GoodsTypeAdapter();
+							mGoodsAdapter.bindData(JsonParser
+									.getParsedData(json, Info.class).getData()
+									.getHomepage());
+							mGridView.setAdapter(mGoodsAdapter);
+							mGoodsAdapter.notifyDataSetChanged();
+							mListView.requestLayout();
+							mListView.invalidateViews();
+
+						}
+					}, new ErrorListener() {
+
+						@Override
+						public void onErrorResponse(VolleyError error) {
+							Log.e(TAG, "request network error", error);
+						}
+					}));
+
+		}
+
+		@Override
+		public void onItemClick(AdapterView<?> adapterView, View view,
+				int position, long id) {
+
+			Intent intent = new Intent(getActivity(),
+					MovieDetailsListActivity.class);
+			startActivity(intent);
+
+		}
+
+	}
+
+	class GoodsTypePagerAdapter extends FragmentPagerAdapter {
+
+		public GoodsTypePagerAdapter(FragmentManager fm) {
+			super(fm);
+
+		}
+
+		@Override
+		public Fragment getItem(int position) {
+
+			return new GoodsTypeFragment();
+		}
+
+		@Override
+		public int getCount() {
+
+			return 2;
+		}
 
 	}
 

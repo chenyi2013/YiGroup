@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <PreferenceCategory android:title="设置" >
+        <Preference
+            android:key="aaa"
+            android:summary="aaaaaat"
+            android:title="aaaa" />
+    </PreferenceCategory>
+
+</PreferenceScreen>
